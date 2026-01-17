@@ -130,10 +130,8 @@ const ShareFlow = ({ taskLink }: ShareFlowProps) => {
               {/* Gift Card Design */}
               <div className="bg-gradient-to-br from-green-100 via-yellow-50 to-orange-50 rounded-xl p-4 mb-5 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-orange-200/50 to-transparent rounded-bl-full" />
-                <div className="flex justify-between items-start mb-3">
-                  <div className="bg-white rounded-lg p-2 shadow-sm">
-                    <GooglePlayIconSimple className="w-8 h-8" />
-                  </div>
+               <div className="flex justify-between items-start mb-3">
+                  <img src="/assets/google-play-logo.png" alt="Google Play" className="w-16 h-16 rounded-lg" />
                   <span className="text-2xl font-bold text-giveaway-green">{rewardAmount}</span>
                 </div>
                 
