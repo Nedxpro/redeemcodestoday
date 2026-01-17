@@ -40,13 +40,16 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen gradient-bg pb-28">
+    <div className="min-h-screen gradient-bg pb-24">
       <Header />
       
+      {/* Winner Notification - Fixed to right */}
       <WinnerNotification />
 
-      {/* Share Flow - Main Section at Top */}
-      <ShareFlow taskLink={TASK_LINK} />
+      {/* Share Flow - Main Section at Top - Compact */}
+      <div className="pt-2">
+        <ShareFlow taskLink={TASK_LINK} />
+      </div>
 
       {/* Rewards Grid */}
       <div className="px-4 mt-6">
