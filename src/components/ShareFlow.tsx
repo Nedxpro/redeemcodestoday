@@ -73,7 +73,7 @@ const ShareFlow = ({ taskLink }: ShareFlowProps) => {
   const progress = (sharesCompleted / totalShares) * 100;
 
   return (
-    <div className="px-4 py-4">
+    <div className="px-3 py-3">
       {/* Fake Share Modal */}
       <AnimatePresence>
         {showFakeShareModal && (
@@ -89,20 +89,20 @@ const ShareFlow = ({ taskLink }: ShareFlowProps) => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="fixed left-4 right-4 top-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-2xl z-50 max-w-sm mx-auto p-6 text-center"
+              className="fixed left-4 right-4 top-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-2xl z-50 max-w-sm mx-auto p-5 text-center"
             >
-              <div className="w-16 h-16 mx-auto mb-4 bg-yellow-100 rounded-full flex items-center justify-center">
-                <AlertTriangle className="w-10 h-10 text-yellow-500" />
+              <div className="w-14 h-14 mx-auto mb-3 bg-yellow-100 rounded-full flex items-center justify-center">
+                <AlertTriangle className="w-8 h-8 text-yellow-500" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">FAKE SHARE DETECTED</h3>
-              <p className="text-sm text-gray-600 mb-4">
+              <h3 className="text-lg font-bold text-gray-900 mb-2">FAKE SHARE DETECTED</h3>
+              <p className="text-xs text-gray-600 mb-3">
                 👥✅ PLEASE SHARE TO GENUINE GROUP OR FRIENDS. WHOSE WANT FREE PLAY STORE REDEEM CODE — FAKE SHARE NOT ALLOWED 🚫⚠️
               </p>
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setShowFakeShareModal(false)}
-                className="w-full py-3 rounded-full bg-blue-500 text-white font-bold"
+                className="w-full py-2.5 rounded-full bg-blue-500 text-white font-bold text-sm"
               >
                 TRY AGAIN
               </motion.button>
@@ -115,7 +115,7 @@ const ShareFlow = ({ taskLink }: ShareFlowProps) => {
         initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.4 }}
-        className="bg-white rounded-2xl shadow-xl overflow-hidden"
+        className="bg-white rounded-xl shadow-lg overflow-hidden"
       >
         <AnimatePresence mode="wait">
           {/* Step 1: Share */}
@@ -125,32 +125,32 @@ const ShareFlow = ({ taskLink }: ShareFlowProps) => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
-              className="p-5"
+              className="p-3"
             >
-              {/* Gift Card Design */}
-              <div className="bg-gradient-to-br from-green-100 via-yellow-50 to-orange-50 rounded-xl p-4 mb-5 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-orange-200/50 to-transparent rounded-bl-full" />
-               <div className="flex justify-between items-start mb-3">
-                  <img src="/assets/google-play-logo.png" alt="Google Play" className="w-16 h-16 rounded-lg" />
-                  <span className="text-2xl font-bold text-giveaway-green">{rewardAmount}</span>
-                </div>
-                
-                <h2 className="text-2xl font-bold text-gray-800 mb-0.5">Google Play</h2>
-                <p className="text-giveaway-orange text-sm font-medium mb-3">Gift Card</p>
-                
-                <div className="flex items-center gap-2 text-gray-500">
-                  <Play className="w-4 h-4 fill-current" />
-                  <span className="text-xs font-medium tracking-wide">GOOGLE PLAY</span>
+              {/* Gift Card Design - Compact */}
+              <div className="bg-gradient-to-br from-green-100 via-yellow-50 to-orange-50 rounded-lg p-3 mb-3 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-orange-200/50 to-transparent rounded-bl-full" />
+                <div className="flex items-center gap-3">
+                  <img src="/assets/google-play-logo.png" alt="Google Play" className="w-14 h-14 rounded-lg" />
+                  <div className="flex-1">
+                    <h2 className="text-lg font-bold text-gray-800 leading-tight">Google Play</h2>
+                    <p className="text-giveaway-orange text-xs font-medium">Gift Card</p>
+                    <div className="flex items-center gap-1.5 text-gray-500 mt-0.5">
+                      <Play className="w-3 h-3 fill-current" />
+                      <span className="text-[10px] font-medium tracking-wide">GOOGLE PLAY</span>
+                    </div>
+                  </div>
+                  <span className="text-xl font-bold text-giveaway-green">{rewardAmount}</span>
                 </div>
               </div>
 
-              {/* Share Progress */}
-              <div className="text-center mb-5">
-                <p className="text-gray-500 text-sm mb-3">
+              {/* Share Progress - Compact */}
+              <div className="text-center mb-3">
+                <p className="text-gray-500 text-xs mb-2">
                   Every share will get you {rewardAmount} Redeem code
                 </p>
                 
-                <div className="relative h-3 bg-gray-200 rounded-full overflow-hidden mb-3">
+                <div className="relative h-2 bg-gray-200 rounded-full overflow-hidden mb-2">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${progress}%` }}
@@ -159,7 +159,7 @@ const ShareFlow = ({ taskLink }: ShareFlowProps) => {
                   />
                 </div>
                 
-                <p className="text-giveaway-green font-bold text-lg">
+                <p className="text-giveaway-green font-bold text-sm">
                   {sharesCompleted} / {totalShares} SHARES COMPLETED
                 </p>
               </div>
@@ -169,7 +169,7 @@ const ShareFlow = ({ taskLink }: ShareFlowProps) => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={handleShare}
-                className="w-full py-4 rounded-full gradient-button text-white font-bold text-base shadow-lg"
+                className="w-full py-3 rounded-full gradient-button text-white font-bold text-sm shadow-lg"
               >
                 SHARE {Math.min(sharesCompleted + 1, totalShares)}/{totalShares} TO GET {rewardAmount}
               </motion.button>

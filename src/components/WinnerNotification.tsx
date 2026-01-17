@@ -33,24 +33,24 @@ const WinnerNotification = () => {
   const currentWinner = winners[currentIndex];
 
   return (
-    <div className="px-4 py-3">
+    <div className="fixed top-16 right-3 z-40">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 20, opacity: 0 }}
+          initial={{ x: 50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ x: 50, opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="bg-giveaway-winner-bg rounded-full py-2 px-4 flex items-center gap-3 shadow-lg max-w-sm mx-auto"
+          className="bg-giveaway-winner-bg rounded-full py-1.5 px-3 flex items-center gap-2 shadow-lg"
         >
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-blue-500 flex items-center justify-center text-lg">
+          <div className="w-7 h-7 rounded-full bg-gradient-to-br from-purple-400 to-blue-500 flex items-center justify-center text-sm">
             {currentWinner.avatar}
           </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-white text-sm font-medium truncate">
+          <div className="min-w-0">
+            <p className="text-white text-[10px] font-medium truncate max-w-[140px]">
               {currentWinner.email} won {currentWinner.amount}
             </p>
-            <p className="text-white/70 text-xs">{currentWinner.time}</p>
+            <p className="text-white/70 text-[9px]">{currentWinner.time}</p>
           </div>
         </motion.div>
       </AnimatePresence>
