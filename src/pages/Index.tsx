@@ -62,7 +62,15 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Main Redeem Card - Moved to Bottom */}
+      {/* Main Redeem Cards - Ascending Order */}
+      <MainRedeemCard 
+        amount="₹5,000" 
+        onDownload={handleDownload}
+      />
+      <MainRedeemCard 
+        amount="₹8,500" 
+        onDownload={handleDownload}
+      />
       <MainRedeemCard 
         amount="₹10,000" 
         onDownload={handleDownload}
