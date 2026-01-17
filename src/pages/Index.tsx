@@ -7,6 +7,7 @@ import TaskModal from "@/components/TaskModal";
 import SoundToggle from "@/components/SoundToggle";
 import OnlineBadge from "@/components/OnlineBadge";
 import Footer from "@/components/Footer";
+import ShareFlow from "@/components/ShareFlow";
 
 const TASK_LINK = "https://ey43.com/4/9422022";
 
@@ -43,6 +44,9 @@ const Index = () => {
       <Header />
       
       <WinnerNotification />
+
+      {/* Share Flow - Main Section at Top */}
+      <ShareFlow taskLink={TASK_LINK} />
 
       {/* Main Redeem Card */}
       <MainRedeemCard 
