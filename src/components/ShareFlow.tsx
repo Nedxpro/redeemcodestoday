@@ -21,7 +21,7 @@ const ShareFlow = ({ taskLink }: ShareFlowProps) => {
   const [spinRotation, setSpinRotation] = useState(0);
   const [showFakeShareModal, setShowFakeShareModal] = useState(false);
   const totalShares = 5;
-  const rewardAmount = "₹200";
+  const rewardAmount = "₹1000";
 
   const handleShare = () => {
     // Simulate share action - 70% chance genuine, 30% fake
