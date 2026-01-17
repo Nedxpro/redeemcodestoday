@@ -48,12 +48,6 @@ const Index = () => {
       {/* Share Flow - Main Section at Top */}
       <ShareFlow taskLink={TASK_LINK} />
 
-      {/* Main Redeem Card */}
-      <MainRedeemCard 
-        amount="₹10,000" 
-        onDownload={handleDownload}
-      />
-
       {/* Rewards Grid */}
       <div className="px-4 mt-6">
         <div className="grid grid-cols-2 gap-3 md:gap-4">
@@ -67,6 +61,12 @@ const Index = () => {
           ))}
         </div>
       </div>
+
+      {/* Main Redeem Card - Moved to Bottom */}
+      <MainRedeemCard 
+        amount="₹10,000" 
+        onDownload={handleDownload}
+      />
 
       <Footer />
 
