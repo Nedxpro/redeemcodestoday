@@ -48,26 +48,37 @@ const ShareFlow = ({ taskLink }: ShareFlowProps) => {
       try {
         // Fetch the share image and convert to File
         let shareFiles: File[] = [];
+        let canShareWithFiles = false;
+        
         try {
           const response = await fetch('/images/share-image.jpeg');
           const blob = await response.blob();
           const file = new File([blob], 'google-play-gift-cards.jpeg', { type: 'image/jpeg' });
           
-          // Check if file sharing is supported
-          if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          // Check if file sharing is supported with both text and files
+          const testShareData = { 
+            files: [file],
+            text: shareMessage,
+            title: 'Free Play Store Redeem Codes'
+          };
+          
+          if (navigator.canShare && navigator.canShare(testShareData)) {
             shareFiles = [file];
+            canShareWithFiles = true;
           }
         } catch (imageError) {
           console.log('Could not load share image');
         }
 
+        // Build share data - include text AND files together
         const shareData: ShareData = {
           title: 'Free Play Store Redeem Codes',
           text: shareMessage,
+          url: 'https://redeemcodestoday.lovable.app/'
         };
 
-        // Add files if supported
-        if (shareFiles.length > 0) {
+        // Add files if supported (text will still be included)
+        if (canShareWithFiles && shareFiles.length > 0) {
           shareData.files = shareFiles;
         }
 
