@@ -23,24 +23,70 @@ const ShareFlow = ({ taskLink }: ShareFlowProps) => {
   const totalShares = 5;
   const rewardAmount = "₹1000";
 
-  const handleShare = () => {
-    // Simulate share action - 70% chance genuine, 30% fake
-    const isGenuine = Math.random() > 0.3;
-    
-    if (isGenuine) {
-      const newShares = sharesCompleted + 1;
-      setSharesCompleted(newShares);
-      
-      if (newShares >= totalShares) {
-        setCurrentStep("email");
+  const shareMessage = `🎁🔥 FREE PLAY STORE REDEEM CODES.
+
+👉 Claim Now:🚀
+
+✅Get ₹5,000
+
+🔗 https://redeemcodestoday.lovable.app/
+
+✅Get ₹8,500
+
+🔗 https://redeemcodestoday.lovable.app/
+
+✅Get ₹10,000
+
+🔗 https://redeemcodestoday.lovable.app/
+
+
+👉 Share with friends & earn together!`;
+
+  const handleShare = async () => {
+    // Use native Web Share API
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Free Play Store Redeem Codes',
+          text: shareMessage,
+        });
+        
+        // After successful share, count it
+        const isFakeShare = Math.random() < 0.3;
+        
+        if (isFakeShare) {
+          setShowFakeShareModal(true);
+        } else {
+          if (sharesCompleted < totalShares) {
+            setSharesCompleted(prev => prev + 1);
+          }
+          if (sharesCompleted + 1 >= totalShares) {
+            setCurrentStep("email");
+          }
+        }
+      } catch (error) {
+        // User cancelled share or error occurred
+        console.log('Share cancelled or failed');
       }
     } else {
-      setShowFakeShareModal(true);
+      // Fallback for browsers without Web Share API
+      const isFakeShare = Math.random() < 0.3;
+      
+      if (isFakeShare) {
+        setShowFakeShareModal(true);
+      } else {
+        if (sharesCompleted < totalShares) {
+          setSharesCompleted(prev => prev + 1);
+        }
+        if (sharesCompleted + 1 >= totalShares) {
+          setCurrentStep("email");
+        }
+      }
     }
   };
 
   const handleEmailSubmit = () => {
-    if (email && email.includes("@")) {
+    if (email) {
       setCurrentStep("verified");
     }
   };
