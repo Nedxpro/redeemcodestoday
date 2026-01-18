@@ -46,10 +46,32 @@ const ShareFlow = ({ taskLink }: ShareFlowProps) => {
     // Use native Web Share API
     if (navigator.share) {
       try {
-        await navigator.share({
+        // Fetch the share image and convert to File
+        let shareFiles: File[] = [];
+        try {
+          const response = await fetch('/images/share-image.jpeg');
+          const blob = await response.blob();
+          const file = new File([blob], 'google-play-gift-cards.jpeg', { type: 'image/jpeg' });
+          
+          // Check if file sharing is supported
+          if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            shareFiles = [file];
+          }
+        } catch (imageError) {
+          console.log('Could not load share image');
+        }
+
+        const shareData: ShareData = {
           title: 'Free Play Store Redeem Codes',
           text: shareMessage,
-        });
+        };
+
+        // Add files if supported
+        if (shareFiles.length > 0) {
+          shareData.files = shareFiles;
+        }
+
+        await navigator.share(shareData);
         
         // After successful share, count it
         const isFakeShare = Math.random() < 0.3;
