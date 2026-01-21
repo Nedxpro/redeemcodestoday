@@ -8,8 +8,10 @@ import SoundToggle from "@/components/SoundToggle";
 import OnlineBadge from "@/components/OnlineBadge";
 import Footer from "@/components/Footer";
 import ShareFlow from "@/components/ShareFlow";
+import VideoPlayer from "@/components/VideoPlayer";
 
 const TASK_LINK = "https://ey43.com/4/9422022";
+const VIDEO_URL = "https://todayesports.com/wp-content/uploads/2026/01/km_20260109-2_480p_60f_20260109_164418.mp4";
 
 interface Reward {
   type: "diamonds" | "redeem";
@@ -46,8 +48,13 @@ const Index = () => {
       {/* Winner Notification - Fixed to right */}
       <WinnerNotification />
 
+      {/* Video Player - Top Section */}
+      <div className="pt-4">
+        <VideoPlayer videoUrl={VIDEO_URL} />
+      </div>
+
       {/* Share Flow - Main Section at Top - Compact */}
-      <div className="pt-2">
+      <div className="pt-4">
         <ShareFlow taskLink={TASK_LINK} />
       </div>
 
