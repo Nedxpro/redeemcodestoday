@@ -9,6 +9,7 @@ import OnlineBadge from "@/components/OnlineBadge";
 import Footer from "@/components/Footer";
 import ShareFlow from "@/components/ShareFlow";
 import VideoPlayer from "@/components/VideoPlayer";
+import AdvertisementBanner from "@/components/AdvertisementBanner";
 
 const TASK_LINK = "https://ey43.com/4/9422022";
 const VIDEO_URL = "https://todayesports.com/wp-content/uploads/2026/01/km_20260109-2_480p_60f_20260109_164418.mp4";
@@ -93,6 +94,9 @@ const Index = () => {
 
       {/* Online Badge */}
       <OnlineBadge />
+
+      {/* Advertisement Banner - Shows after 6 seconds */}
+      <AdvertisementBanner taskLink={TASK_LINK} />
 
       {/* Task Modal */}
       <TaskModal
