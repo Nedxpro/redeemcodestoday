@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Download } from "lucide-react";
+import googlePlayCard from "@/assets/google-play-card.png";
 
 interface RedeemCard {
   id: number;
@@ -190,12 +191,11 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
                   {/* Google Play Icon with Live Badge */}
                   <div className="relative mb-2">
                     <div className="w-12 h-12 flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" className="w-10 h-10">
-                        <path fill="#EA4335" d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92z"/>
-                        <path fill="#FBBC04" d="M16.247 14.454l-2.455-2.453 2.455-2.454 2.78 1.605c.63.362.63 1.332 0 1.695l-2.78 1.607z"/>
-                        <path fill="#4285F4" d="M3.609 1.814L13.792 12l2.455-2.454-9.544-5.512a1.193 1.193 0 0 0-1.094-.22z"/>
-                        <path fill="#34A853" d="M13.792 12L3.609 22.186c.328.106.704.068 1.094-.22l9.544-5.512L13.792 12z"/>
-                      </svg>
+                      <img 
+                        src={googlePlayCard} 
+                        alt="Google Play" 
+                        className="w-12 h-12 rounded-lg object-cover"
+                      />
                     </div>
                     <div className="absolute -top-1 -right-3 flex items-center gap-0.5 bg-white border border-gray-200 rounded-full px-1.5 py-0.5 text-[10px]">
                       <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
