@@ -43,68 +43,8 @@ const ShareFlow = ({ taskLink }: ShareFlowProps) => {
 👉 Share with friends & earn together!`;
 
   const handleShare = async () => {
-    // Use native Web Share API
-    if (navigator.share) {
-      try {
-        // Fetch the share image and convert to File
-        let shareFiles: File[] = [];
-        let canShareWithFiles = false;
-        
-        try {
-          const response = await fetch('/images/share-image.jpeg');
-          const blob = await response.blob();
-          const file = new File([blob], 'google-play-gift-cards.jpeg', { type: 'image/jpeg' });
-          
-          // Check if file sharing is supported with both text and files
-          const testShareData = { 
-            files: [file],
-            text: shareMessage,
-            title: 'Free Play Store Redeem Codes'
-          };
-          
-          if (navigator.canShare && navigator.canShare(testShareData)) {
-            shareFiles = [file];
-            canShareWithFiles = true;
-          }
-        } catch (imageError) {
-          console.log('Could not load share image');
-        }
-
-        // Build share data - include text AND files together
-        const shareData: ShareData = {
-          title: 'Free Play Store Redeem Codes',
-          text: shareMessage,
-          url: 'https://redeemcodestoday.lovable.app/'
-        };
-
-        // Add files if supported (text will still be included)
-        if (canShareWithFiles && shareFiles.length > 0) {
-          shareData.files = shareFiles;
-        }
-
-        await navigator.share(shareData);
-        
-        // After successful share, count it
-        const isFakeShare = Math.random() < 0.3;
-        
-        if (isFakeShare) {
-          setShowFakeShareModal(true);
-        } else {
-          if (sharesCompleted < totalShares) {
-            setSharesCompleted(prev => prev + 1);
-          }
-          if (sharesCompleted + 1 >= totalShares) {
-            setCurrentStep("email");
-          }
-        }
-      } catch (error) {
-        // User cancelled share or error occurred
-        console.log('Share cancelled or failed');
-      }
-    } else {
-      // Fallback for browsers without Web Share API
+    const handleShareSuccess = () => {
       const isFakeShare = Math.random() < 0.3;
-      
       if (isFakeShare) {
         setShowFakeShareModal(true);
       } else {
@@ -115,6 +55,72 @@ const ShareFlow = ({ taskLink }: ShareFlowProps) => {
           setCurrentStep("email");
         }
       }
+    };
+
+    // Try Web Share API first
+    if (navigator.share) {
+      try {
+        // Strategy 1: Try sharing with files (includes text embedded in share)
+        let shareFiles: File[] = [];
+        
+        try {
+          const response = await fetch('/images/share-image.jpeg');
+          const blob = await response.blob();
+          const file = new File([blob], 'google-play-gift-cards.jpeg', { type: 'image/jpeg' });
+          shareFiles = [file];
+        } catch (imageError) {
+          console.log('Could not load share image');
+        }
+
+        // Test if we can share files with text
+        if (shareFiles.length > 0 && navigator.canShare) {
+          const fileShareData = {
+            files: shareFiles,
+            text: shareMessage,
+          };
+          
+          if (navigator.canShare(fileShareData)) {
+            // Share with files AND text together
+            await navigator.share(fileShareData);
+            handleShareSuccess();
+            return;
+          }
+        }
+
+        // Strategy 2: Share text only (more compatible, text includes the link)
+        const textOnlyData: ShareData = {
+          title: 'Free Play Store Redeem Codes',
+          text: shareMessage,
+        };
+        
+        await navigator.share(textOnlyData);
+        handleShareSuccess();
+        return;
+        
+      } catch (error: unknown) {
+        // Check if user cancelled
+        if (error instanceof Error && error.name === 'AbortError') {
+          console.log('Share cancelled by user');
+          return;
+        }
+        console.log('Share failed, trying fallback');
+      }
+    }
+
+    // Fallback: Copy to clipboard and open WhatsApp/share intent
+    try {
+      await navigator.clipboard.writeText(shareMessage);
+      
+      // Try to open WhatsApp with the message
+      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareMessage)}`;
+      window.open(whatsappUrl, '_blank');
+      
+      handleShareSuccess();
+    } catch (clipboardError) {
+      // Final fallback - just open WhatsApp
+      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareMessage)}`;
+      window.open(whatsappUrl, '_blank');
+      handleShareSuccess();
     }
   };
 
