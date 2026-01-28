@@ -22,7 +22,7 @@ const RewardCard = ({ type, amount, onRedeem }: RewardCardProps) => {
       <div className="flex justify-center mb-2">
         {isDiamonds ? (
           <div className="w-14 h-14 md:w-16 md:h-16 rounded-full overflow-hidden flex items-center justify-center float-animation">
-            <img src="/images/diamonds-reward.jpg" alt="Diamonds Reward" className="w-full h-full object-cover" />
+            <img src="/images/diamonds-reward.jpg" alt="Diamonds Reward" width={64} height={64} loading="lazy" className="w-full h-full object-cover" />
           </div>
         ) : (
           <div className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center float-animation">

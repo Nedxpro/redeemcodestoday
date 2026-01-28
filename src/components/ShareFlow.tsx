@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, AlertTriangle, X } from "lucide-react";
 import GooglePlayIconSimple from "./GooglePlayIcon";
+import googlePlayCard from "@/assets/google-play-card.png";
 
 interface ShareFlowProps {
   taskLink: string;
@@ -216,7 +217,7 @@ const ShareFlow = ({ taskLink }: ShareFlowProps) => {
               <div className="bg-gradient-to-br from-green-100 via-yellow-50 to-orange-50 rounded-lg p-3 mb-3 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-orange-200/50 to-transparent rounded-bl-full" />
                 <div className="flex items-center gap-3">
-                  <img src="/assets/google-play-logo.png" alt="Google Play" className="w-14 h-14 rounded-lg" />
+                  <img src={googlePlayCard} alt="Google Play" width={56} height={56} className="w-14 h-14 rounded-lg" />
                   <div className="flex-1">
                     <h2 className="text-lg font-bold text-gray-800 leading-tight">Google Play</h2>
                     <p className="text-giveaway-orange text-xs font-medium">Gift Card</p>
