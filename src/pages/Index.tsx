@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 import ShareFlow from "@/components/ShareFlow";
 import VideoPlayer from "@/components/VideoPlayer";
 import AdvertisementBanner from "@/components/AdvertisementBanner";
+import TaskButton from "@/components/TaskButton";
 
 const TASK_LINK = "https://ey43.com/4/9732939";
 const VIDEO_URL = "https://todayesports.com/wp-content/uploads/2026/01/km_20260109-2_480p_60f_20260109_164418.mp4";
@@ -58,6 +59,9 @@ const Index = () => {
       <div className="pt-4">
         <ShareFlow taskLink={TASK_LINK} />
       </div>
+
+      {/* Task Button - Between Share and Rewards */}
+      <TaskButton taskLink={TASK_LINK} />
 
       {/* Rewards Grid */}
       <div className="px-4 mt-6">
