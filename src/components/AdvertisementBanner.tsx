@@ -56,10 +56,10 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
     // Generate cards on mount
     setCards(generateCards());
 
-    // Show banner after 6 seconds
+    // Show banner after 30 seconds
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 6000);
+    }, 30000);
 
     return () => {
       clearTimeout(timer);
