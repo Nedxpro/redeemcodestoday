@@ -58,46 +58,14 @@ const ShareFlow = ({ taskLink }: ShareFlowProps) => {
       }
     };
 
-    // Try Web Share API first
+    // Try Web Share API first - text only
     if (navigator.share) {
       try {
-        // Strategy 1: Try sharing with files (includes text embedded in share)
-        let shareFiles: File[] = [];
-        
-        try {
-          const response = await fetch('/images/share-image.jpeg');
-          const blob = await response.blob();
-          const file = new File([blob], 'google-play-gift-cards.jpeg', { type: 'image/jpeg' });
-          shareFiles = [file];
-        } catch (imageError) {
-          console.log('Could not load share image');
-        }
-
-        // Test if we can share files with text
-        if (shareFiles.length > 0 && navigator.canShare) {
-          const fileShareData = {
-            files: shareFiles,
-            text: shareMessage,
-          };
-          
-          if (navigator.canShare(fileShareData)) {
-            // Share with files AND text together
-            await navigator.share(fileShareData);
-            handleShareSuccess();
-            return;
-          }
-        }
-
-        // Strategy 2: Share text only (more compatible, text includes the link)
-        const textOnlyData: ShareData = {
-          title: 'Free Play Store Redeem Codes',
+        await navigator.share({
           text: shareMessage,
-        };
-        
-        await navigator.share(textOnlyData);
+        });
         handleShareSuccess();
         return;
-        
       } catch (error: unknown) {
         // Check if user cancelled
         if (error instanceof Error && error.name === 'AbortError') {
@@ -108,21 +76,10 @@ const ShareFlow = ({ taskLink }: ShareFlowProps) => {
       }
     }
 
-    // Fallback: Copy to clipboard and open WhatsApp/share intent
-    try {
-      await navigator.clipboard.writeText(shareMessage);
-      
-      // Try to open WhatsApp with the message
-      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareMessage)}`;
-      window.open(whatsappUrl, '_blank');
-      
-      handleShareSuccess();
-    } catch (clipboardError) {
-      // Final fallback - just open WhatsApp
-      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareMessage)}`;
-      window.open(whatsappUrl, '_blank');
-      handleShareSuccess();
-    }
+    // Fallback: Open WhatsApp with the message
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareMessage)}`;
+    window.open(whatsappUrl, '_blank');
+    handleShareSuccess();
   };
 
   const handleEmailSubmit = () => {
