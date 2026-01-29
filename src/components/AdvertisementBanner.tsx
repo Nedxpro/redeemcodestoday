@@ -28,7 +28,7 @@ const generateRandomCode = () => {
 };
 
 const generateCards = (): RedeemCard[] => {
-  const amounts = [10, 20, 50, 80, 100, 150, 200, 250, 500];
+  const amounts = [600, 750, 800, 1000, 1200, 1500, 2000, 2500, 3000, 5000];
   return Array.from({ length: 50 }, (_, i) => ({
     id: i,
     amount: amounts[Math.floor(Math.random() * amounts.length)],
@@ -56,10 +56,10 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
     // Generate cards on mount
     setCards(generateCards());
 
-    // Show banner after 30 seconds
+    // Show banner after 6 seconds
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 30000);
+    }, 6000);
 
     return () => {
       clearTimeout(timer);
