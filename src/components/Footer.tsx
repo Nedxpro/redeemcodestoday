@@ -13,10 +13,7 @@ const Footer = () => {
       <div className="text-center text-xs text-muted-foreground">
         <p>© 2025 Google Play Redeem Info | Independent educational</p>
         <p>landing page (not affiliated with Google LLC) Copyright © 2026</p>
-        <p className="mt-1">
-          Powered by{" "}
-          <a href="#" className="text-giveaway-green hover:underline">[opgta6.com]</a>
-        </p>
+        
       </div>
     </footer>
   );
