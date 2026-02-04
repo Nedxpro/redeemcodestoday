@@ -65,10 +65,10 @@ const TaskButton = ({ taskLink }: TaskButtonProps) => {
           }}
         />
 
-        <div className="flex items-center justify-center gap-4 relative z-10 bg-amber-100/90 rounded-full py-2 px-4 mx-2">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 relative z-10 bg-amber-100/90 rounded-2xl py-3 px-4 mx-1">
           {/* Avatar circle */}
           <motion.div 
-            className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center border-2 border-white shadow-md shrink-0"
+            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center border-2 border-white shadow-md shrink-0"
             animate={{
               scale: [1, 1.1, 1],
             }}
@@ -78,17 +78,17 @@ const TaskButton = ({ taskLink }: TaskButtonProps) => {
               ease: "easeInOut",
             }}
           >
-            <Rocket className="w-5 h-5 text-white" />
+            <Rocket className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
           </motion.div>
 
           {/* Text content */}
           <div className="flex flex-col items-center text-center">
-            <span className="text-amber-700 font-bold text-sm flex items-center gap-1">
+            <span className="text-amber-700 font-bold text-xs sm:text-sm flex items-center justify-center gap-1 whitespace-nowrap">
               <span>🚀</span>
               <span>1-INSTALL+REGISTER=5,000</span>
               <span>💎</span>
             </span>
-            <span className="text-amber-600 font-semibold text-xs flex items-center gap-1">
+            <span className="text-amber-600 font-semibold text-[10px] sm:text-xs flex items-center justify-center gap-1 whitespace-nowrap">
               <span>🎁</span>
               <span>INSTALL & GET-5,000</span>
               <span>💎</span>
