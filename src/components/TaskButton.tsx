@@ -65,10 +65,10 @@ const TaskButton = ({ taskLink }: TaskButtonProps) => {
           }}
         />
 
-        <div className="flex items-center justify-center gap-3 relative z-10">
+        <div className="flex items-center justify-center gap-4 relative z-10 bg-amber-100/90 rounded-full py-2 px-4 mx-2">
           {/* Avatar circle */}
           <motion.div 
-            className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center border-2 border-white shadow-md"
+            className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center border-2 border-white shadow-md shrink-0"
             animate={{
               scale: [1, 1.1, 1],
             }}
@@ -82,13 +82,13 @@ const TaskButton = ({ taskLink }: TaskButtonProps) => {
           </motion.div>
 
           {/* Text content */}
-          <div className="flex flex-col items-start">
-            <span className="text-white font-bold text-sm flex items-center gap-1 drop-shadow-md">
+          <div className="flex flex-col items-center text-center">
+            <span className="text-amber-700 font-bold text-sm flex items-center gap-1">
               <span>🚀</span>
               <span>1-INSTALL+REGISTER=5,000</span>
               <span>💎</span>
             </span>
-            <span className="text-white/90 font-semibold text-xs flex items-center gap-1 drop-shadow-md">
+            <span className="text-amber-600 font-semibold text-xs flex items-center gap-1">
               <span>🎁</span>
               <span>INSTALL & GET-5,000</span>
               <span>💎</span>
