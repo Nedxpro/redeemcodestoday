@@ -86,12 +86,13 @@ const TaskButton = ({ taskLink }: TaskButtonProps) => {
 
           {/* Text content */}
           <div className="flex flex-col items-center text-center">
-            <span className="text-amber-700 font-bold text-xs sm:text-sm flex items-center justify-center gap-1 whitespace-nowrap">
+            <span className="text-amber-800 font-bold text-xs sm:text-sm flex items-center justify-center gap-1 whitespace-nowrap">
               <span>🚀</span>
               <span>1-INSTALL+REGISTER=5,000</span>
               <span>💎</span>
             </span>
-            <span className="text-amber-600 font-semibold text-[10px] sm:text-xs flex items-center justify-center gap-1 whitespace-nowrap">
+            <span></span>
+            <span className="text-amber-700 font-semibold text-[10px] sm:text-xs flex items-center justify-center gap-1 whitespace-nowrap">
               <span>🎁</span>
               <span>INSTALL & GET-5,000</span>
               <span>💎</span>
