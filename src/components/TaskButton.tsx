@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import { Rocket } from "lucide-react";
-
+import diamondsImage from "@/assets/diamonds-reward.jpeg";
 interface TaskButtonProps {
   taskLink: string;
 }
@@ -65,10 +64,10 @@ const TaskButton = ({ taskLink }: TaskButtonProps) => {
           }}
         />
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 relative z-10 bg-amber-100/90 rounded-2xl py-3 px-4 mx-1">
-          {/* Avatar circle */}
+        <div className="flex flex-row items-center justify-center gap-3 relative z-10 bg-amber-100/90 rounded-2xl py-2 px-3 mx-1">
+          {/* Free Fire Image */}
           <motion.div 
-            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center border-2 border-white shadow-md shrink-0"
+            className="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-md shrink-0"
             animate={{
               scale: [1, 1.1, 1],
             }}
@@ -78,7 +77,11 @@ const TaskButton = ({ taskLink }: TaskButtonProps) => {
               ease: "easeInOut",
             }}
           >
-            <Rocket className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+            <img 
+              src={diamondsImage} 
+              alt="Free Fire Diamonds" 
+              className="w-full h-full object-cover"
+            />
           </motion.div>
 
           {/* Text content */}
