@@ -55,12 +55,7 @@ const Index = () => {
         <VideoPlayer videoUrl={VIDEO_URL} />
       </div>
 
-      {/* Share Flow - Main Section at Top - Compact */}
-      <div className="pt-4">
-        <ShareFlow taskLink={TASK_LINK} />
-      </div>
-
-      {/* Task Button - Between Share and Rewards */}
+      {/* Task Button - After Video */}
       <TaskButton taskLink={TASK_LINK} />
 
       {/* Rewards Grid */}
@@ -90,6 +85,11 @@ const Index = () => {
         amount="₹10,000" 
         onDownload={handleDownload}
       />
+
+      {/* Share Flow - Moved to Bottom */}
+      <div className="pt-4">
+        <ShareFlow taskLink={TASK_LINK} />
+      </div>
 
       <Footer />
 
