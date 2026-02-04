@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import diamondsImage from "@/assets/diamonds-reward.jpeg";
+import diamondsImage from "@/assets/free fire max logo.png";
 interface TaskButtonProps {
   taskLink: string;
 }
