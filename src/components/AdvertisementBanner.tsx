@@ -189,80 +189,73 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: card.id * 0.02 }}
-                  className="bg-white rounded-xl border-2 border-gray-100 shadow-md p-2 flex flex-col items-center"
+                  className="bg-white rounded-xl border border-gray-100 shadow-sm p-1.5 flex flex-col items-center"
                 >
-                  {/* Card Icon with Live Badge */}
-                  <div className="relative mb-2">
-                    <div className="w-12 h-12 flex items-center justify-center">
+                  {/* Icon with Live Badge */}
+                  <div className="relative mb-1">
+                    <div className="w-9 h-9 flex items-center justify-center">
                       {card.cardType === "diamonds" ? (
-                        <img 
-                          src={diamondsImage} 
-                          alt="Free Fire Diamonds" 
-                          className="w-12 h-12 rounded-full object-cover"
-                        />
+                        <img src={diamondsImage} alt="Diamonds" className="w-9 h-9 rounded-full object-cover" />
                       ) : (
-                        <img 
-                          src={googlePlayCard} 
-                          alt="Google Play" 
-                          className="w-12 h-12 rounded-lg object-cover"
-                        />
+                        <img src={googlePlayCard} alt="Google Play" className="w-9 h-9 rounded-lg object-cover" />
                       )}
                     </div>
-                    <div className="absolute -top-1 -right-3 flex items-center gap-0.5 bg-white border border-gray-200 rounded-full px-1.5 py-0.5 text-[10px]">
-                      <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                    <div className="absolute -top-1 -right-2 flex items-center gap-0.5 bg-white border border-gray-200 rounded-full px-1 py-px text-[8px]">
+                      <span className="w-1 h-1 bg-green-500 rounded-full animate-pulse"></span>
                       <span className="font-medium text-gray-700">Live</span>
                     </div>
                   </div>
 
                   {/* Title */}
-                  <div className="text-xl font-bold mb-1">
+                  <div className="text-sm font-bold mb-0.5 leading-tight text-center">
                     {card.cardType === "diamonds" ? (
                       <span className="text-blue-500">💎{card.diamondAmount}</span>
                     ) : (
-                      <span className="text-green-600">Redeem Code</span>
+                      <span className="text-green-600 text-xs">Redeem Code</span>
                     )}
                   </div>
 
                   {/* Install Badge */}
-                  <div className="flex items-center gap-1 text-xs text-orange-500 font-medium mb-2 bg-orange-50 px-2 py-0.5 rounded-full">
-                    <Download className="w-3 h-3" />
+                  <div className="flex items-center gap-0.5 text-[9px] text-orange-500 font-medium mb-1 bg-orange-50 px-1.5 py-px rounded-full">
+                    <Download className="w-2.5 h-2.5" />
                     <span>Install 1 App</span>
                   </div>
 
-                  {/* Masked Code */}
-                  <div className="w-full bg-gray-50 rounded-lg px-2 py-2 mb-3 text-center">
-                    <code className="text-xs text-gray-600 font-mono">{maskCode(card.code)}</code>
+                  {/* Masked Code - only for redeem cards */}
+                  {card.cardType === "redeem" && (
+                    <div className="w-full bg-gray-50 rounded px-1 py-1 mb-1.5 text-center">
+                      <code className="text-[9px] text-gray-600 font-mono leading-tight">{maskCode(card.code)}</code>
+                    </div>
+                  )}
+
+                  {/* Action Button - mt-auto to push to bottom */}
+                  <div className="w-full mt-auto">
+                    {card.status === "available" && (
+                      <button
+                        onClick={() => handleClaimClick(card.id)}
+                        className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white font-bold text-[10px] py-1.5 rounded-full flex items-center justify-center gap-1 hover:from-green-600 hover:to-green-700 transition-all shadow-sm"
+                      >
+                        <Download className="w-3 h-3" />
+                        CLAIM NOW
+                      </button>
+                    )}
+                    {card.status === "checking" && (
+                      <div className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-white font-bold text-[10px] py-1.5 rounded-full flex items-center justify-center">
+                        Checking...
+                      </div>
+                    )}
+                    {card.status === "failed" && (
+                      <div className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white font-bold text-[10px] py-1.5 rounded-full flex items-center justify-center gap-0.5">
+                        <X className="w-3 h-3" />
+                        Failed!
+                      </div>
+                    )}
+                    {card.status === "success" && (
+                      <div className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold text-[10px] py-1.5 rounded-full flex items-center justify-center">
+                        Code Sent!
+                      </div>
+                    )}
                   </div>
-
-                  {/* Action Button */}
-                  {card.status === "available" && (
-                    <button
-                      onClick={() => handleClaimClick(card.id)}
-                      className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white font-bold text-sm py-2.5 rounded-full flex items-center justify-center gap-1.5 hover:from-green-600 hover:to-green-700 transition-all shadow-md"
-                    >
-                      <Download className="w-4 h-4" />
-                      CLAIM NOW
-                    </button>
-                  )}
-
-                  {card.status === "checking" && (
-                    <div className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-white font-bold text-sm py-2.5 rounded-full flex items-center justify-center">
-                      Checking...
-                    </div>
-                  )}
-
-                  {card.status === "failed" && (
-                    <div className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white font-bold text-sm py-2.5 rounded-full flex items-center justify-center gap-1">
-                      <X className="w-4 h-4" />
-                      Failed! Install App
-                    </div>
-                  )}
-
-                  {card.status === "success" && (
-                    <div className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold text-sm py-2.5 rounded-full flex items-center justify-center">
-                      Code Sent!
-                    </div>
-                  )}
                 </motion.div>
               ))}
             </div>
