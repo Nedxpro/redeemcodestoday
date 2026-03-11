@@ -23,10 +23,10 @@ interface Reward {
 const rewards: Reward[] = [
   { type: "diamonds", amount: "1060" },
   { type: "diamonds", amount: "5600" },
-  { type: "redeem", amount: "₹1,000" },
-  { type: "redeem", amount: "₹1,500" },
-  { type: "redeem", amount: "₹2,000" },
-  { type: "redeem", amount: "₹2,500" },
+  { type: "redeem", amount: "" },
+  { type: "redeem", amount: "" },
+  { type: "redeem", amount: "" },
+  { type: "redeem", amount: "" },
 ];
 
 const Index = () => {
