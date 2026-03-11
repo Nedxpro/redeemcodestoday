@@ -81,7 +81,7 @@ const MainRedeemCard = ({ amount, onDownload }: MainRedeemCardProps) => {
         className="w-full py-3 rounded-xl gradient-button text-white font-bold text-sm shadow-lg mb-2"
       >
         <span className="block">Download & Register</span>
-        <span className="block text-xs font-normal opacity-90">to get FREE {amount} Redeem Code</span>
+        <span className="block text-xs font-normal opacity-90">to get FREE Redeem Code</span>
       </motion.button>
 
       {/* Warning */}

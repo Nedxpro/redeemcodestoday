@@ -39,7 +39,7 @@ const Index = () => {
   };
 
   const handleDownload = () => {
-    setSelectedReward({ type: "redeem", amount: "₹10,000" });
+    setSelectedReward({ type: "redeem", amount: "" });
     setIsModalOpen(true);
   };
 
