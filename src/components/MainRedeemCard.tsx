@@ -38,7 +38,7 @@ const MainRedeemCard = ({ amount, onDownload }: MainRedeemCardProps) => {
 
       {/* Amount */}
       <h2 className="text-lg md:text-xl font-bold text-center text-giveaway-green mb-1.5">
-        🎉 {amount} Play Store Code
+        🎉 Play Store Code
       </h2>
       
       <p className="text-center text-foreground text-xs mb-3">
@@ -81,7 +81,7 @@ const MainRedeemCard = ({ amount, onDownload }: MainRedeemCardProps) => {
         className="w-full py-3 rounded-xl gradient-button text-white font-bold text-sm shadow-lg mb-2"
       >
         <span className="block">Download & Register</span>
-        <span className="block text-xs font-normal opacity-90">to get FREE {amount} Redeem Code</span>
+        <span className="block text-xs font-normal opacity-90">to get FREE Redeem Code</span>
       </motion.button>
 
       {/* Warning */}

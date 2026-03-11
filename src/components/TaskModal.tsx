@@ -56,7 +56,7 @@ const TaskModal = ({ isOpen, onClose, rewardType, rewardAmount, taskLink }: Task
                     Complete 3 steps to unlock
                   </h3>
                   <p className="text-giveaway-green font-medium text-sm">
-                    💎{rewardAmount} {rewardType === "diamonds" ? "Diamonds" : ""} 💎
+                    {rewardType === "diamonds" ? `💎${rewardAmount} Diamonds 💎` : "💎 Redeem Code 💎"}
                   </p>
                 </div>
               </div>

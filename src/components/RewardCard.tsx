@@ -36,7 +36,7 @@ const RewardCard = ({ type, amount, onRedeem }: RewardCardProps) => {
         {isDiamonds ? (
           <span>💎{amount} Diamonds</span>
         ) : (
-          <span>{amount} Redeem code</span>
+          <span>Redeem code</span>
         )}
       </p>
 
