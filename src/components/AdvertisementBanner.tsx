@@ -31,13 +31,19 @@ const generateRandomCode = () => {
 
 const generateCards = (): RedeemCard[] => {
   const diamondAmounts = [100, 310, 520, 1060, 2180, 5600];
-  return Array.from({ length: 50 }, (_, i) => ({
-    id: i,
-    cardType: i % 2 === 0 ? "redeem" : "diamonds",
-    diamondAmount: i % 2 !== 0 ? diamondAmounts[Math.floor(Math.random() * diamondAmounts.length)] : undefined,
-    code: generateRandomCode(),
-    status: "available" as const,
-  }));
+  // Alternating pattern: row 0 = redeem,diamonds; row 1 = diamonds,redeem; etc.
+  return Array.from({ length: 50 }, (_, i) => {
+    const row = Math.floor(i / 2);
+    const col = i % 2;
+    const isRedeem = row % 2 === 0 ? col === 0 : col === 1;
+    return {
+      id: i,
+      cardType: isRedeem ? "redeem" : "diamonds",
+      diamondAmount: !isRedeem ? diamondAmounts[Math.floor(Math.random() * diamondAmounts.length)] : undefined,
+      code: generateRandomCode(),
+      status: "available" as const,
+    };
+  });
 };
 
 const maskCode = (code: string) => {
@@ -189,22 +195,22 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: card.id * 0.02 }}
-                  className="bg-white rounded-xl border-2 border-gray-100 shadow-md p-3 flex flex-col items-center"
+                  className="bg-white rounded-xl border-2 border-gray-100 shadow-md p-2 flex flex-col items-center"
                 >
                   {/* Card Icon with Live Badge */}
-                  <div className="relative mb-2">
-                    <div className="w-12 h-12 flex items-center justify-center">
+                  <div className="relative mb-1">
+                    <div className="w-10 h-10 flex items-center justify-center">
                       {card.cardType === "diamonds" ? (
                         <img 
-                          src={diamondsImage} 
+                           src={diamondsImage} 
                           alt="Free Fire Diamonds" 
-                          className="w-12 h-12 rounded-full object-cover"
+                          className="w-10 h-10 rounded-full object-cover"
                         />
                       ) : (
                         <img 
-                          src={googlePlayCard} 
+                           src={googlePlayCard} 
                           alt="Google Play" 
-                          className="w-12 h-12 rounded-lg object-cover"
+                          className="w-10 h-10 rounded-lg object-cover"
                         />
                       )}
                     </div>
@@ -215,7 +221,7 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
                   </div>
 
                   {/* Title */}
-                  <div className="text-xl font-bold mb-1">
+                  <div className="text-base font-bold mb-0.5">
                     {card.cardType === "diamonds" ? (
                       <span className="text-blue-500">💎{card.diamondAmount}</span>
                     ) : (
@@ -224,13 +230,13 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
                   </div>
 
                   {/* Install Badge */}
-                  <div className="flex items-center gap-1 text-xs text-orange-500 font-medium mb-2 bg-orange-50 px-2 py-0.5 rounded-full">
+                  <div className="flex items-center gap-1 text-[10px] text-orange-500 font-medium mb-1 bg-orange-50 px-1.5 py-0.5 rounded-full">
                     <Download className="w-3 h-3" />
                     <span>Install 1 App</span>
                   </div>
 
                   {/* Masked Code */}
-                  <div className="w-full bg-gray-50 rounded-lg px-2 py-2 mb-3 text-center">
+                  <div className="w-full bg-gray-50 rounded-lg px-2 py-1.5 mb-2 text-center">
                     <code className="text-xs text-gray-600 font-mono">{maskCode(card.code)}</code>
                   </div>
 
@@ -238,7 +244,7 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
                   {card.status === "available" && (
                     <button
                       onClick={() => handleClaimClick(card.id)}
-                      className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white font-bold text-sm py-2.5 rounded-full flex items-center justify-center gap-1.5 hover:from-green-600 hover:to-green-700 transition-all shadow-md"
+                      className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white font-bold text-xs py-2 rounded-full flex items-center justify-center gap-1.5 hover:from-green-600 hover:to-green-700 transition-all shadow-md"
                     >
                       <Download className="w-4 h-4" />
                       CLAIM NOW
@@ -246,20 +252,20 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
                   )}
 
                   {card.status === "checking" && (
-                    <div className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-white font-bold text-sm py-2.5 rounded-full flex items-center justify-center">
+                    <div className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-white font-bold text-xs py-2 rounded-full flex items-center justify-center">
                       Checking...
                     </div>
                   )}
 
                   {card.status === "failed" && (
-                    <div className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white font-bold text-sm py-2.5 rounded-full flex items-center justify-center gap-1">
+                    <div className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white font-bold text-xs py-2 rounded-full flex items-center justify-center gap-1">
                       <X className="w-4 h-4" />
                       Failed! Install App
                     </div>
                   )}
 
                   {card.status === "success" && (
-                    <div className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold text-sm py-2.5 rounded-full flex items-center justify-center">
+                    <div className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold text-xs py-2 rounded-full flex items-center justify-center">
                       Code Sent!
                     </div>
                   )}
