@@ -189,7 +189,7 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: card.id * 0.02 }}
-                  className="bg-white rounded-xl border-2 border-gray-100 shadow-md p-3 flex flex-col items-center"
+                  className="bg-white rounded-xl border-2 border-gray-100 shadow-md p-2 flex flex-col items-center"
                 >
                   {/* Card Icon with Live Badge */}
                   <div className="relative mb-2">
