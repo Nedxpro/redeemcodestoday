@@ -258,7 +258,7 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
                   )}
 
                   {card.status === "failed" && (
-                    <div className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white font-bold text-sm py-2.5 rounded-full flex items-center justify-center gap-1">
+                    <div className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white font-bold text-xs py-2 rounded-full flex items-center justify-center gap-1">
                       <X className="w-4 h-4" />
                       Failed! Install App
                     </div>
