@@ -230,7 +230,7 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
                   </div>
 
                   {/* Install Badge */}
-                  <div className="flex items-center gap-1 text-xs text-orange-500 font-medium mb-2 bg-orange-50 px-2 py-0.5 rounded-full">
+                  <div className="flex items-center gap-1 text-[10px] text-orange-500 font-medium mb-1 bg-orange-50 px-1.5 py-0.5 rounded-full">
                     <Download className="w-3 h-3" />
                     <span>Install 1 App</span>
                   </div>
