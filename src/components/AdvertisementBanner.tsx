@@ -5,7 +5,8 @@ import googlePlayCard from "@/assets/google-play-card.png";
 
 interface RedeemCard {
   id: number;
-  amount: number;
+  cardType: "redeem" | "diamonds";
+  diamondAmount?: number;
   code: string;
   status: "available" | "checking" | "failed" | "success";
   clickTime?: number;
@@ -28,10 +29,11 @@ const generateRandomCode = () => {
 };
 
 const generateCards = (): RedeemCard[] => {
-  const amounts = [600, 750, 800, 1000, 1200, 1500, 2000, 2500, 3000, 5000];
+  const diamondAmounts = [100, 310, 520, 1060, 2180, 5600];
   return Array.from({ length: 50 }, (_, i) => ({
     id: i,
-    amount: amounts[Math.floor(Math.random() * amounts.length)],
+    cardType: i % 2 === 0 ? "redeem" : "diamonds",
+    diamondAmount: i % 2 !== 0 ? diamondAmounts[Math.floor(Math.random() * diamondAmounts.length)] : undefined,
     code: generateRandomCode(),
     status: "available" as const,
   }));
