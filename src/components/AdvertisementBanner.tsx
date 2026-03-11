@@ -265,7 +265,7 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
                   )}
 
                   {card.status === "success" && (
-                    <div className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold text-sm py-2.5 rounded-full flex items-center justify-center">
+                    <div className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold text-xs py-2 rounded-full flex items-center justify-center">
                       Code Sent!
                     </div>
                   )}
