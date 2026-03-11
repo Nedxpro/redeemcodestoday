@@ -2,10 +2,12 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Download } from "lucide-react";
 import googlePlayCard from "@/assets/google-play-card.png";
+import diamondsImage from "@/assets/diamonds-reward.jpeg";
 
 interface RedeemCard {
   id: number;
-  amount: number;
+  cardType: "redeem" | "diamonds";
+  diamondAmount?: number;
   code: string;
   status: "available" | "checking" | "failed" | "success";
   clickTime?: number;
@@ -28,10 +30,11 @@ const generateRandomCode = () => {
 };
 
 const generateCards = (): RedeemCard[] => {
-  const amounts = [600, 750, 800, 1000, 1200, 1500, 2000, 2500, 3000, 5000];
+  const diamondAmounts = [100, 310, 520, 1060, 2180, 5600];
   return Array.from({ length: 50 }, (_, i) => ({
     id: i,
-    amount: amounts[Math.floor(Math.random() * amounts.length)],
+    cardType: i % 2 === 0 ? "redeem" : "diamonds",
+    diamondAmount: i % 2 !== 0 ? diamondAmounts[Math.floor(Math.random() * diamondAmounts.length)] : undefined,
     code: generateRandomCode(),
     status: "available" as const,
   }));
@@ -188,14 +191,22 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
                   transition={{ delay: card.id * 0.02 }}
                   className="bg-white rounded-xl border-2 border-gray-100 shadow-md p-3 flex flex-col items-center"
                 >
-                  {/* Google Play Icon with Live Badge */}
+                  {/* Card Icon with Live Badge */}
                   <div className="relative mb-2">
                     <div className="w-12 h-12 flex items-center justify-center">
-                      <img 
-                        src={googlePlayCard} 
-                        alt="Google Play" 
-                        className="w-12 h-12 rounded-lg object-cover"
-                      />
+                      {card.cardType === "diamonds" ? (
+                        <img 
+                          src={diamondsImage} 
+                          alt="Free Fire Diamonds" 
+                          className="w-12 h-12 rounded-full object-cover"
+                        />
+                      ) : (
+                        <img 
+                          src={googlePlayCard} 
+                          alt="Google Play" 
+                          className="w-12 h-12 rounded-lg object-cover"
+                        />
+                      )}
                     </div>
                     <div className="absolute -top-1 -right-3 flex items-center gap-0.5 bg-white border border-gray-200 rounded-full px-1.5 py-0.5 text-[10px]">
                       <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
@@ -203,8 +214,14 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
                     </div>
                   </div>
 
-                  {/* Amount */}
-                  <div className="text-xl font-bold text-green-600 mb-1">₹{card.amount}</div>
+                  {/* Title */}
+                  <div className="text-xl font-bold mb-1">
+                    {card.cardType === "diamonds" ? (
+                      <span className="text-blue-500">💎{card.diamondAmount}</span>
+                    ) : (
+                      <span className="text-green-600">Redeem Code</span>
+                    )}
+                  </div>
 
                   {/* Install Badge */}
                   <div className="flex items-center gap-1 text-xs text-orange-500 font-medium mb-2 bg-orange-50 px-2 py-0.5 rounded-full">
