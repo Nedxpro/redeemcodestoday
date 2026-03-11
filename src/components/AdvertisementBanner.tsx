@@ -252,7 +252,7 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
                   )}
 
                   {card.status === "checking" && (
-                    <div className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-white font-bold text-sm py-2.5 rounded-full flex items-center justify-center">
+                    <div className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-white font-bold text-xs py-2 rounded-full flex items-center justify-center">
                       Checking...
                     </div>
                   )}
