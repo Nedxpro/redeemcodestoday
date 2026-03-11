@@ -208,9 +208,9 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
                         />
                       ) : (
                         <img 
-                          src={googlePlayCard} 
+                           src={googlePlayCard} 
                           alt="Google Play" 
-                          className="w-12 h-12 rounded-lg object-cover"
+                          className="w-10 h-10 rounded-lg object-cover"
                         />
                       )}
                     </div>
