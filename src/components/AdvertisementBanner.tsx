@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Download } from "lucide-react";
 import googlePlayCard from "@/assets/google-play-card.png";
+import diamondsImage from "@/assets/diamonds-reward.jpeg";
 
 interface RedeemCard {
   id: number;
