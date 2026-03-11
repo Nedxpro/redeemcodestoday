@@ -236,7 +236,7 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
                   </div>
 
                   {/* Masked Code */}
-                  <div className="w-full bg-gray-50 rounded-lg px-2 py-2 mb-3 text-center">
+                  <div className="w-full bg-gray-50 rounded-lg px-2 py-1.5 mb-2 text-center">
                     <code className="text-xs text-gray-600 font-mono">{maskCode(card.code)}</code>
                   </div>
 
