@@ -31,13 +31,19 @@ const generateRandomCode = () => {
 
 const generateCards = (): RedeemCard[] => {
   const diamondAmounts = [100, 310, 520, 1060, 2180, 5600];
-  return Array.from({ length: 50 }, (_, i) => ({
-    id: i,
-    cardType: i % 2 === 0 ? "redeem" : "diamonds",
-    diamondAmount: i % 2 !== 0 ? diamondAmounts[Math.floor(Math.random() * diamondAmounts.length)] : undefined,
-    code: generateRandomCode(),
-    status: "available" as const,
-  }));
+  // Alternating pattern: row 0 = redeem,diamonds; row 1 = diamonds,redeem; etc.
+  return Array.from({ length: 50 }, (_, i) => {
+    const row = Math.floor(i / 2);
+    const col = i % 2;
+    const isRedeem = row % 2 === 0 ? col === 0 : col === 1;
+    return {
+      id: i,
+      cardType: isRedeem ? "redeem" : "diamonds",
+      diamondAmount: !isRedeem ? diamondAmounts[Math.floor(Math.random() * diamondAmounts.length)] : undefined,
+      code: generateRandomCode(),
+      status: "available" as const,
+    };
+  });
 };
 
 const maskCode = (code: string) => {
