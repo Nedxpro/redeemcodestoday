@@ -244,7 +244,7 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
                   {card.status === "available" && (
                     <button
                       onClick={() => handleClaimClick(card.id)}
-                      className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white font-bold text-sm py-2.5 rounded-full flex items-center justify-center gap-1.5 hover:from-green-600 hover:to-green-700 transition-all shadow-md"
+                      className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white font-bold text-xs py-2 rounded-full flex items-center justify-center gap-1.5 hover:from-green-600 hover:to-green-700 transition-all shadow-md"
                     >
                       <Download className="w-4 h-4" />
                       CLAIM NOW
