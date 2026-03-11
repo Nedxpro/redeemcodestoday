@@ -182,7 +182,7 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
 
           {/* Cards Grid */}
           <div className="p-3 overflow-y-auto max-h-[calc(85vh-60px)]">
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-3 gap-2">
               {cards.map((card) => (
                 <motion.div
                   key={card.id}
