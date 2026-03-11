@@ -38,7 +38,7 @@ const MainRedeemCard = ({ amount, onDownload }: MainRedeemCardProps) => {
 
       {/* Amount */}
       <h2 className="text-lg md:text-xl font-bold text-center text-giveaway-green mb-1.5">
-        🎉 {amount} Play Store Code
+        🎉 Play Store Code
       </h2>
       
       <p className="text-center text-foreground text-xs mb-3">
