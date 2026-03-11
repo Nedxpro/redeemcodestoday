@@ -202,9 +202,9 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
                     <div className="w-10 h-10 flex items-center justify-center">
                       {card.cardType === "diamonds" ? (
                         <img 
-                          src={diamondsImage} 
+                           src={diamondsImage} 
                           alt="Free Fire Diamonds" 
-                          className="w-12 h-12 rounded-full object-cover"
+                          className="w-10 h-10 rounded-full object-cover"
                         />
                       ) : (
                         <img 
