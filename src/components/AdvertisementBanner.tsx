@@ -198,8 +198,8 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
                   className="bg-white rounded-xl border-2 border-gray-100 shadow-md p-2 flex flex-col items-center"
                 >
                   {/* Card Icon with Live Badge */}
-                  <div className="relative mb-2">
-                    <div className="w-12 h-12 flex items-center justify-center">
+                  <div className="relative mb-1">
+                    <div className="w-10 h-10 flex items-center justify-center">
                       {card.cardType === "diamonds" ? (
                         <img 
                           src={diamondsImage} 
