@@ -41,7 +41,7 @@ const GiftCardMain = ({ amount, sharesCompleted, totalShares, onShare }: GiftCar
       {/* Share Progress */}
       <div className="text-center mb-4">
         <p className="text-muted-foreground text-sm mb-3">
-          Every share will get you {amount} Redeem code
+          Every share will get you a Redeem code
         </p>
         
         <div className="relative h-3 bg-gray-200 rounded-full overflow-hidden mb-3">
