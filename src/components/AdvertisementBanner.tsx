@@ -30,7 +30,9 @@ const generateRandomCode = () => {
 };
 
 const generateCards = (): RedeemCard[] => {
-  const diamondAmounts = [100, 200, 310, 520, 800, 1060, 1500, 2180, 3000, 5000, 5600, 7500, 10000, 12000, 15000, 18000, 20000, 25000];
+  const diamondAmounts = [
+    100, 200, 310, 520, 800, 1060, 1500, 2180, 3000, 5000, 5600, 7500, 10000, 12000, 15000, 18000, 20000, 25000,
+  ];
   // Alternating pattern: row 0 = redeem,diamonds; row 1 = diamonds,redeem; etc.
   return Array.from({ length: 50 }, (_, i) => {
     const row = Math.floor(i / 2);
@@ -76,62 +78,59 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
     };
   }, []);
 
-  const handleClaimClick = useCallback((cardId: number) => {
-    const clickTime = Date.now();
-    setActiveCardId(cardId);
-    
-    // Update card with click time
-    setCards(prev => prev.map(card => 
-      card.id === cardId ? { ...card, clickTime } : card
-    ));
+  const handleClaimClick = useCallback(
+    (cardId: number) => {
+      const clickTime = Date.now();
+      setActiveCardId(cardId);
 
-    // Open affiliate link
-    window.open(taskLink, "_blank");
+      // Update card with click time
+      setCards((prev) => prev.map((card) => (card.id === cardId ? { ...card, clickTime } : card)));
 
-    // Start checking for user return
-    const checkInterval = setInterval(() => {
-      if (document.visibilityState === "visible") {
-        const returnTime = Date.now();
-        const elapsed = returnTime - clickTime;
-        
-        // User returned before 10 seconds - show verify modal
-        if (elapsed < 10000) {
-          setShowVerifyModal(true);
-          clearInterval(checkInterval);
+      // Open affiliate link
+      window.open(taskLink, "_blank");
+
+      // Start checking for user return
+      const checkInterval = setInterval(() => {
+        if (document.visibilityState === "visible") {
+          const returnTime = Date.now();
+          const elapsed = returnTime - clickTime;
+
+          // User returned before 10 seconds - show verify modal
+          if (elapsed < 10000) {
+            setShowVerifyModal(true);
+            clearInterval(checkInterval);
+          }
         }
-      }
-    }, 500);
+      }, 500);
 
-    setReturnCheckInterval(checkInterval);
+      setReturnCheckInterval(checkInterval);
 
-    // Clear interval after 2 minutes max
-    setTimeout(() => {
-      clearInterval(checkInterval);
-    }, 120000);
-  }, [taskLink]);
+      // Clear interval after 2 minutes max
+      setTimeout(() => {
+        clearInterval(checkInterval);
+      }, 120000);
+    },
+    [taskLink],
+  );
 
   const handleVerifyComplete = useCallback(() => {
     if (activeCardId === null) return;
-    
-    const card = cards.find(c => c.id === activeCardId);
+
+    const card = cards.find((c) => c.id === activeCardId);
     if (!card || !card.clickTime) return;
 
     setShowVerifyModal(false);
-    
+
     // Set status to checking
-    setCards(prev => prev.map(c => 
-      c.id === activeCardId ? { ...c, status: "checking" as const } : c
-    ));
+    setCards((prev) => prev.map((c) => (c.id === activeCardId ? { ...c, status: "checking" as const } : c)));
 
     // Simulate check delay
     setTimeout(() => {
       const elapsed = Date.now() - card.clickTime!;
-      
+
       if (elapsed < 45000) {
         // Failed - user came back too quickly
-        setCards(prev => prev.map(c => 
-          c.id === activeCardId ? { ...c, status: "failed" as const } : c
-        ));
+        setCards((prev) => prev.map((c) => (c.id === activeCardId ? { ...c, status: "failed" as const } : c)));
       } else {
         // Success - show email modal
         setShowEmailModal(true);
@@ -139,19 +138,22 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
     }, 2000);
   }, [activeCardId, cards]);
 
-  const handleEmailSubmit = useCallback((e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email.trim()) return;
-    
-    setShowEmailModal(false);
-    setShowSuccessModal(true);
-    
-    // Reset after showing success
-    setTimeout(() => {
-      setShowSuccessModal(false);
-      setActiveCardId(null);
-    }, 5000);
-  }, [email]);
+  const handleEmailSubmit = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+      if (!email.trim()) return;
+
+      setShowEmailModal(false);
+      setShowSuccessModal(true);
+
+      // Reset after showing success
+      setTimeout(() => {
+        setShowSuccessModal(false);
+        setActiveCardId(null);
+      }, 5000);
+    },
+    [email],
+  );
 
   const closeBanner = () => {
     setIsVisible(false);
@@ -201,17 +203,13 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
                   <div className="relative mb-1">
                     <div className="w-10 h-10 flex items-center justify-center">
                       {card.cardType === "diamonds" ? (
-                        <img 
-                           src={diamondsImage} 
-                          alt="Free Fire Diamonds" 
+                        <img
+                          src="/images/diamonds-reward.jpg"
+                          alt="Free Fire Diamonds"
                           className="w-10 h-10 rounded-full object-cover"
                         />
                       ) : (
-                        <img 
-                           src={googlePlayCard} 
-                          alt="Google Play" 
-                          className="w-10 h-10 rounded-lg object-cover"
-                        />
+                        <img src={googlePlayCard} alt="Google Play" className="w-10 h-10 rounded-lg object-cover" />
                       )}
                     </div>
                     <div className="absolute -top-1 -right-3 flex items-center gap-0.5 bg-white border border-gray-200 rounded-full px-1.5 py-0.5 text-[10px]">
@@ -292,9 +290,7 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
               >
                 <div className="text-5xl mb-4">⏳</div>
                 <h3 className="text-2xl font-bold text-gray-800 mb-2">Verify Task</h3>
-                <p className="text-gray-600 mb-6">
-                  Did you complete the "Install App" or "Sign Up" task?
-                </p>
+                <p className="text-gray-600 mb-6">Did you complete the "Install App" or "Sign Up" task?</p>
                 <button
                   onClick={handleVerifyComplete}
                   className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white font-bold py-3 rounded-full text-lg hover:from-green-600 hover:to-green-700 transition-all"
@@ -322,9 +318,7 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
                 className="bg-white rounded-2xl p-6 mx-4 max-w-sm w-full shadow-2xl"
               >
                 <h3 className="text-xl font-bold text-gray-800 mb-2 text-center">Enter Your Email</h3>
-                <p className="text-gray-600 mb-4 text-center text-sm">
-                  We'll send your redeem code to this email
-                </p>
+                <p className="text-gray-600 mb-4 text-center text-sm">We'll send your redeem code to this email</p>
                 <form onSubmit={handleEmailSubmit}>
                   <input
                     type="email"
@@ -363,9 +357,7 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
               >
                 <div className="text-5xl mb-4">✅</div>
                 <h3 className="text-xl font-bold text-gray-800 mb-2">Success!</h3>
-                <p className="text-gray-600">
-                  Your redeem code will be sent via mail soon.
-                </p>
+                <p className="text-gray-600">Your redeem code will be sent via mail soon.</p>
               </motion.div>
             </motion.div>
           )}
