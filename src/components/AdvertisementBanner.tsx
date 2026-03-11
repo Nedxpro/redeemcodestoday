@@ -221,7 +221,7 @@ const AdvertisementBanner = ({ taskLink }: AdvertisementBannerProps) => {
                   </div>
 
                   {/* Title */}
-                  <div className="text-xl font-bold mb-1">
+                  <div className="text-base font-bold mb-0.5">
                     {card.cardType === "diamonds" ? (
                       <span className="text-blue-500">💎{card.diamondAmount}</span>
                     ) : (
