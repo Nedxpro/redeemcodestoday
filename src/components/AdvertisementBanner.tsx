@@ -30,7 +30,7 @@ const generateRandomCode = () => {
 };
 
 const generateCards = (): RedeemCard[] => {
-  const diamondAmounts = [100, 310, 520, 1060, 2180, 5600];
+  const diamondAmounts = [100, 200, 310, 520, 800, 1060, 1500, 2180, 3000, 5000, 5600, 7500, 10000, 12000, 15000, 18000, 20000, 25000];
   // Alternating pattern: row 0 = redeem,diamonds; row 1 = diamonds,redeem; etc.
   return Array.from({ length: 50 }, (_, i) => {
     const row = Math.floor(i / 2);
